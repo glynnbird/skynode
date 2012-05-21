@@ -1,0 +1,11 @@
+{
+  "name": "EPG",
+  "version": "0.0.1",
+  "description": "Sky EPG",
+  "main": "epg.js",
+  "dependencies": {
+    "shred": "0.7.18",
+    "jade": "0.26.0",
+    "express": "2.5.9"
+  }
+}
