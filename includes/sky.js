@@ -1,4 +1,5 @@
 var CHANNEL_LIST_URL = "http://epgservices.sky.com/tvlistings-proxy/TVListingsProxy/init.json";
+var PROGRAMME_LIST_URL = "http://epgservices.sky.com/tvlistings-proxy/TVListingsProxy/tvlistings.json";
 var http = require('http');
 var Shred = require("shred");
 var shred = new Shred();
@@ -41,6 +42,9 @@ var getProgrammeList = function(channelFilter,listingDate,callback) {
   var url = PROGRAMME_LIST_URL;
   var detail=2;
   var duration=24*60;
+  var listingDate='201205210000'
+  url=url+"?channels="+escape(channelFilter)+"&dur="+escape(duration)+"&time="+escape(listingDate)+"&detail="+escape(detail);
+  console.log(url);
   
   var req = shred.get({
     url: url,
@@ -50,11 +54,16 @@ var getProgrammeList = function(channelFilter,listingDate,callback) {
       on: {
         // You can use response codes as events
         200: function(response) {
-          callback(response.content.data)
+          var programmeData = eval('(' + response.content.body + ')');
+          if(callback != undefined) {
+            callback(programmeData)          
+          }
         },
         // Any other response means something's wrong
         response: function(response) {
-          callback(false);
+          if(callback != undefined) {
+            callback(false)          
+          }
         }
       }
     });
@@ -62,5 +71,5 @@ var getProgrammeList = function(channelFilter,listingDate,callback) {
 
 module.exports = {
   getChannelList: getChannelList,
-  channelList: channelList
+  getProgrammeList: getProgrammeList
 }

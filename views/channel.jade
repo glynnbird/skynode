@@ -1,0 +1,19 @@
+div.container  
+  div.hero-unit  
+    h1 #{title}
+    p All the Sky channels in numberical order
+
+div.container
+  table.table.table-striped
+     thead
+       tr
+         th Time
+         th Programme
+         th Description
+     tbody
+       each prog in programmes
+         tr
+           td= prog.start
+           td= prog.title
+           td= prog.shortDesc
+           

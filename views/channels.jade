@@ -1,4 +1,18 @@
+div.container  
+  div.hero-unit  
+    h1 Sky Channels
+    p All the Sky channels in numberical order
+
 div.container
-  ul
-    each channel in channels
-      li Number #{channel.channelno} is #{channel.title}
+  table.table.table-striped
+    thead
+      tr
+        th Number
+        th Name
+    tbody
+      each channel in channels
+        tr
+          td 
+            a(href='/channel/'+channel.channelid) #{channel.channelno}
+          td
+            a(href='/channel/'+channel.channelid) #{channel.title}
