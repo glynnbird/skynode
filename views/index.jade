@@ -1,4 +1,14 @@
+div.container  
+  div.hero-unit  
+    h1 #{title}
+    p A simple programme guide built using Node.js + Express + Jade + the Sky API
+
 div.container
   div.row
-    h1 
-    a(href='http://www.franz-enzenhofer.com/') Franz Enzenhofer
+    div.span12
+      h1 Sky Electronic Programme Guide
+      p Sky has a API which shows the next week's TV programmes in JSON format. e.g.
+      pre.prettyprint
+        include includes/json_snippet.html
+      p This application was written to us the Sky API and to practice the use of Node.js and Express.
+      

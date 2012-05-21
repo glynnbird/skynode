@@ -14,7 +14,9 @@ app.use(express.static(__dirname+'/public'));
 
 // home pages
 app.get('/', function(req, res){
-  res.render('index.jade', { title: 'My Site',description: 'meta description goes here' });
+  var page = { title: 'Sky Node',
+               description: 'Sky Node - A Sky EPG built in Node.js' }
+  res.render('index.jade', page);
 });
 
 // get full list of channels
