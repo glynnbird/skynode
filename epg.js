@@ -1,5 +1,7 @@
-// a module to store an array of connected users and manage them
+// the sky library
 var sky = require('./includes/sky.js');
+
+// the trusty express framework
 var express = require('express')
 var app = express.createServer();
 
@@ -8,9 +10,6 @@ app.set('view options', { pretty: true });
 
 // output everything in the 'public' directory as static files
 app.use(express.static(__dirname+'/public'));
-
-// fetch the sky channel list at start up
-//sky.getChannelList();
 
 // home pages
 app.get('/', function(req, res){
@@ -32,12 +31,11 @@ app.get('/channels', function(req, res) {
 // get a single channel
 app.get('/channel/:channelno', function(req, res) {
   
-  sky.getProgrammeList('2002','201205210000', function(programmes) {
- //   console.log(programmes)
+  sky.getProgrammeList(req.params.channelno,'201205210000', function(programmes) {
     var page = { title: 'Channel List - ' + programmes.channels.title,
                  description: 'Full channel list for '+programmes.channels.title,
                  programmes:  programmes.channels.program};
-     res.render('channel.jade', page);
+    res.render('channel.jade', page);
   })
 
 });
