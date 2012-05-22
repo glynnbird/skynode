@@ -30,8 +30,7 @@ app.get('/channels', function(req, res) {
 
 // get a single channel
 app.get('/channel/:channelno', function(req, res) {
-  
-  sky.getProgrammeList(req.params.channelno,'201205210000', function(programmes) {
+  sky.getProgrammeList(req.params.channelno, sky.getDateString(new Date(),true), function(programmes) {
     var page = { title: 'Channel List - ' + programmes.channels.title,
                  description: 'Full channel list for '+programmes.channels.title,
                  programmes:  programmes.channels.program};

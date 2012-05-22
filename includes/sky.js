@@ -20,6 +20,16 @@ var PROGRAMME_LIST_URL = "http://epgservices.sky.com/tvlistings-proxy/TVListings
 // the lifetime of cache entries - 24 hours in milliseconds
 var CACHE_LIFETIME = 1000*60*60*24;
 
+// extend the Date class to export dates in Sky's format
+Date.prototype.toSkyDate = function () {
+  var year = ""+this.getFullYear();
+  var month = "0" + (this.getMonth()+1);
+  var day = "0" + this.getDate();
+  var hour = "0" + this.getHours();
+  var minute = "0" + this.getMinutes();
+  return year+month.slice(-2)+day.slice(-2)+hour.slice(-2)+minute.slice(-2);
+};
+
 // fetch the full channel list
 var getChannelList = function(callback) {
   
@@ -103,7 +113,18 @@ var getProgrammeList = function(channelFilter,listingDate,callback) {
    }
 }
 
+// return a date object in the correct format for the Sky API
+var getDateString=function(d,atMidnight) {
+  if(atMidnight) {
+    d.setHours(0);
+    d.setMinutes(0);
+    d.setSeconds(0);    
+  }
+  return d.toSkyDate(d);
+}
+
 module.exports = {
   getChannelList: getChannelList,
-  getProgrammeList: getProgrammeList
+  getProgrammeList: getProgrammeList,
+  getDateString: getDateString
 }
