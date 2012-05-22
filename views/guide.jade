@@ -1,0 +1,9 @@
+div.container
+  h1 #{title}
+  each channel in channels
+    div.channel
+      each prog in channel.program
+        div.programme(style='height:'+prog.dur*200/3600+'px')
+          div.programme_title= prog.title
+          div.programme_body= prog.shortDesc
+           
