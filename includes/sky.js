@@ -150,12 +150,13 @@ var getValidDateList=function() {
   var i=0;
   var dateList = new Array();
   do {
-    var ob = new Object();
+ /*   var ob = new Object();
     ob.ukDate = d.toUKDate();
     ob.skyDate = d.toSkyDate();
-    dateList[i] = ob;
+    dateList[i] = ob;*/
     // move forward a day
-    d = new Date(d.getTime() + 1000 * 60 * 60 * 24);
+   var d= new Date(d.getTime() + 1000 * 60 * 60 * 24);
+   dateList[i] = d;
     i++;
   } while(i<7);
   return dateList;

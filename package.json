@@ -1,6 +1,6 @@
 {
   "name": "EPG",
-  "version": "0.0.1",
+  "version": "0.0.1-2",
   "description": "Sky EPG",
   "main": "epg.js",
   "dependencies": {
@@ -8,5 +8,12 @@
     "jade": "0.26.0",
     "express": "2.5.9",
     "memory-cache": ""
+  },
+  "subdomain": "glynnbird.skynode",
+  "scripts": {
+    "start": "epg.js"
+  },
+  "engines": {
+    "node": "0.6.x"
   }
 }

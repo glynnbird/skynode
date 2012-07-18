@@ -18,4 +18,4 @@ div.navbar.navbar-fixed-top
               ul.dropdown-menu
                 each d in dateList
                   li
-                    a(href='/guide/'+d.skyDate) #{d.ukDate}
+                    a(href='/guide/'+d.getFullYear()+'/'+(d.getMonth()+1)+'/'+d.getDate()) #{d.getDate()}
